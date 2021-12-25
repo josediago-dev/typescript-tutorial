@@ -1,6 +1,10 @@
-var character = 'mario';
-character = 'luigi';
-var sayHello = function (name) {
-    console.log("Hello ".concat(name, "!"));
+var pointGuard = {
+    firstName: 'steph',
+    lastName: 'curry',
+    jerseyNumber: 30
 };
-sayHello('Jose Diago');
+pointGuard = {
+    firstName: 'shaun',
+    lastName: 'livingston',
+    jerseyNumber: 34
+};

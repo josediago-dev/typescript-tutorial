@@ -1,9 +1,11 @@
-let character = 'mario';
-
-character = 'luigi';
-
-const sayHello = (name: string) => {
-    console.log(`Hello ${name}!`);
+let pointGuard = {
+    firstName: 'steph',
+    lastName: 'curry',
+    jerseyNumber: 30
 };
 
-sayHello('Jose Diago');
+pointGuard = {
+    firstName: 'shaun',
+    lastName: 'livingston',
+    jerseyNumber: 34
+};

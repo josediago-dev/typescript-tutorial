@@ -5,7 +5,7 @@ Credit to Net Ninja for this tutorial. (https://www.youtube.com/channel/UCW5YeuE
 
 ### Branches
 
-**main** - The base repository. Every subsequent repositories are based from this branch.
+**main** - The base repository. This repository contains the detailed readme file.
 ***
 
 **01-compiling-typescript** - Lesson on how to compile typescript into javascript.

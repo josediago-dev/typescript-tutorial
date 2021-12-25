@@ -1,7 +1,7 @@
 # typescript-tutorial
 
 ## A tutorial repository for typescript.
-Credit to Net Ninja for this tutorial. (https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg)
+This repository contains a typescript fundamental tutorial. This will also serve as a reference for me whenever I feel like going back to the basics of typescript.
 
 ### Branches
 
@@ -26,10 +26,10 @@ tsc sandbox.ts -w
 **02-type-basics** - Lesson on the basic variable types of typescript.
 In typescript, when we set a variable into a type of something, for example a string, we cannot change the type of it or assign a new value type to it unlike in javascript.
 ```typescript
-let character = 'mario';
-character = false; // typescript will not allow this since character is already declared as type of string.
-character = 10; // typescript will not allow this since character is already declared as type of string.
-character = 'luigi'; // typescript will allwow this because we are assigning a string again.
+let player = 'steph';
+player = false; // typescript will not allow this since character is already declared as type of string.
+player = 30; // typescript will not allow this since character is already declared as type of string.
+player = 'klay'; // typescript will allwow this because we are assigning a string again.
 ```
 When creating a function that accepts a parameter, we can pass any parameter type we want in that function and typescript will allow that.
 ```typescript
@@ -41,7 +41,7 @@ Now **sayHello(true)** does not make any sense in here because we want to say he
 const sayHello = (name: string) => {
     console.log(`Hello ${name}!`);
 };
-sayHello('Jose Diago');
+sayHello('Steph Curry');
 ```
 By explicitly saying that we want a string type parameter for **sayHello** function, typescript will now strict that function and passing a type other than string will result in an error.
 ***

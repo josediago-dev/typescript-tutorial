@@ -29,7 +29,7 @@ In typescript, when we set a variable into a type of something, for example a st
 let character = 'mario';
 character = false; // typescript will not allow this since character is already declared as type of string.
 character = 10; // typescript will not allow this since character is already declared as type of string.
-character = 'luigi'; // typescript will allwow this because we are assigning a string again.
+character = 'luigi'; // typescript will allow this because we are assigning a string again.
 ```
 When creating a function that accepts a parameter, we can pass any parameter type we want in that function and typescript will allow that.
 ```typescript

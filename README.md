@@ -36,7 +36,7 @@ When creating a function that accepts a parameter, we can pass any parameter typ
 const sayHello = name => console.log(`Hello ${name}!`);
 sayHello(true);
 ```
-Now **sayHello(true)** does not make any sense in here because we want to say hello to a person. A person usually has a name of type string. In typescript, we can explicitly tell a function that we are expecting a paramter of specific type. In the case of sayHello, we want a parameter of type string.
+Now **sayHello(true)** does not make any sense in here because we want to say hello to a person. A person usually has a name of type string. In typescript, we can explicitly tell a function that we are expecting a parameter of specific type. In the case of sayHello, we want a parameter of type string.
 ```typescript
 const sayHello = (name: string) => {
     console.log(`Hello ${name}!`);

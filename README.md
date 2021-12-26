@@ -127,3 +127,88 @@ pointGuard = {
     status: retired // adding status property here will not be allowed because property does not exists when pointGuard object was first created
 };
 ```
+***
+**04-explicit-types** - Lessons about explicit types.
+In typescript, when you declare a variable and give it a value and type, typescript will automatically infer the type of that variable. Infer meaning, a variable declared as a string will always be a string no matter what. You can never assign any other type to it.
+```typescript
+let player = 'Steph Curry'; // typescript will infer that player is a string
+player = 30; // typescript will not allow this because player was inferred to always be a string
+```
+However, sometimes we do want to declare a variable and not set any value to it. But, we want to explicitly say that we want to this variable to always be a string. So for example, if I just try to create a variable without an initial value and not explicitly set its type, I can change the value and type of it completely.
+```typescript
+let player; // player is declared without explicitly declaring its type
+player = 'Steph Curry'; // player is assigned with a string
+player = 30; // player is assigned with a number
+```
+In the example above, you will see that the player variable is changed from string to number. But we don't want this because we are then wasting what typescript is for. We want to declare a variable and set its type explicitly so that when we accidentally assigned a value to it with a different type, we won't face any issues. This gives us the confidence that we are always aware of what we expect from the variables we declare in our codebase.
+Let us tweak our example and explicitly declare the type we want.
+```typescript
+let player:string; // we are explicitly saying that player is always of type string
+player = 'Steph Curry'; // typescript will allow this because the value we are assigning to player is a string
+player = 30; // typescript will not allow this because the value we are assigning to player is a number
+
+let jerseyNumber:number; // we are explicitly saying that jerseyNumber is always of type number
+jerseyNumber = 30; // typescript will allow this because the value we are assigning to player is a number
+jerseyNumber = 'Steph Curry'; // typescript will not allow this because the value we are assigning to player is a string
+```
+Explicitly declaring the type of an array is also pretty straightforward. However, once you declare an array of string for example, you can never push a number value to that array. It needs to always be an array of string.
+```typescript
+let warriors: string[]; // array of string
+warriors = ['Steph', 'Klay', 'Draymond']; // values are all string
+warriors = [30, 11, 23]; // values are numbers, not allowed!
+warriors = ['steph', 30]; // values are mixed types, not allowed!
+```
+It is also important to explicitly say if an array is an empty array when the array is first created. The reason for this is if you did not explicitly say that an array is an empty array, when you use the **.push** method to add a new value in the array, it will throw an error.
+```
+let warriors: string[];
+warriors.push('steph'); // typescript will not show you an error when you are writing this line, but once you run the code, when you open the browser, this will throw an error in the console
+```
+Let us tweak our example to explicitly define that the array is an empty array so that we can push new values to it.
+```typescript
+let warriors: string[] = []; // explicitly saying that it is an empty array
+warriors.push('steph'); // push will now work
+```
+Sometimes we want to declare an array with mixed types or **union types**, for example a string and a number. We can also do that in typescript.
+```
+let warriors: (string|number)[] = []; // variable warriors is of type string or number (string|number)
+warriors.push('steph'); // allowed
+warriors.push(30); // allowed
+warriors.push(true); // not allowed
+```
+Take note that we can also use union types not just on arrays but also on normal variable declaration.
+```typescript
+let warriorId: string|number; // warriorId can be a string or a number string|number
+warriorId = 'stephCurry'; // allowed
+warriorId = 30; // allowed
+warriorId = 'stephCurry30'; // allowed
+warriorId = false; // not allowed
+warriorId = {}; // not allowed
+```
+Notice though that the union type we declared in warriorId and warriors from the previous example is quite different.
+```typescript
+let warriorId: string|number; // warriorId can be a string or a number string|number
+let warriors: (string|number)[] = []; // variable warriors is of type string or number (string|number)
+```
+The **warriorId** is not enclosed in parenthesis while **warriors** is enclosed in parenthesis. When we are using union types for arrays, it is important to enclosed that in a parenthesis, otherwise, we don't have to.
+
+Now, in the case of objects, explicitly declaring a variable with a type of object is also pretty straightforward.
+```typescript
+let pointGuard: object; // pointGuard is explicitly of type object
+pointGuard = { name: 'Steph Curry', jerseyNumber: 30, active: true }; // allowed (object)
+pointGuard = 'Steph Curry'; // not allowed (string)
+```
+Take note though, you can assign an array in object because arrays are technically an object.
+```typescript
+let pointGuard: object; // pointGuard is explicitly of type object
+pointGuard = { name: 'Steph Curry', jerseyNumber: 30, active: true }; // allowed (object)
+pointGuard = ['Steph Curry', 30, true]; // allowed (array)
+```
+Now, what if we want to be strict about our object variable? We don't want an array to be assigned to our pointGuard object? We can achieve this by also explicitly identifying the properties of our object.
+```typescript
+let pointGuard: { name: string, jerseyNumber: number, active: boolean }; // object with properties explicitly defined
+pointGuard = { name: 'steph curry', jerseyNumber: 30, active: true }; // allowed
+pointGuard = []; // not allowed
+pointGuard = { name: 'steph curry', jerseyNumber: 30 }; // not allowed because active is missing
+pointGuard = { name: 'steph curry', jerseyNumber: 30, active: true, injured: false }; // not allowed, injured is not a property of pointGuard when it is first created.
+```
+This way we are sure that pointGuard will always be an object. However, when we assign new values to our pointGuard object, we can't remove or add new property.

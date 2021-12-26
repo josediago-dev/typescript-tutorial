@@ -5,10 +5,18 @@ This repository contains a typescript fundamental tutorial. This will also serve
 
 ### Branches
 
-**main** - The base repository. Every subsequent repositories are based from this branch.
+[Main](#main)
+[Compiling Typescrit](#compiling-typescript)
+[Basic Types](#basic-types)
+[Objects And Arrays](#objects-and-arrays)
+[Explicit Types](#explicit-types)
+
+# main
+The base repository. Every subsequent repositories are based from this branch.
 ***
 
-**01-compiling-typescript** - Lesson on how to compile typescript into javascript.
+# Compiling Typescript
+Lesson on how to compile typescript into javascript.
 To compile a typescript file into a javascript file, first you need to install the **typescript** package library globally on your system.
 ```
 npm install typescript -g
@@ -23,7 +31,8 @@ tsc sandbox.ts -w
 ```
 ***
 
-**02-type-basics** - Lesson on the basic variable types of typescript.
+# Basic Types
+Lesson on the basic variable types of typescript.
 In typescript, when we set a variable into a type of something, for example a string, we cannot change the type of it or assign a new value type to it unlike in javascript.
 ```typescript
 let player = 'steph';
@@ -46,7 +55,8 @@ sayHello('Steph Curry');
 By explicitly saying that we want a string type parameter for **sayHello** function, typescript will now strict that function and passing a type other than string will result in an error.
 ***
 
-**03-objects-arrays** - Lesson on objects and array types of typescript.
+# Objects And Arrays
+Lesson on objects and array types of typescript.
 In typescript, when we declare an array of same types and push a new value to the array but with a different type, typescript will not allow it.
 ```typescript
 const warriors = ['steph', 'klay', 'draymond'];
@@ -128,7 +138,8 @@ pointGuard = {
 };
 ```
 ***
-**04-explicit-types** - Lessons about explicit types.
+# Explicit Types
+Lessons about explicit types.
 In typescript, when you declare a variable and give it a value and type, typescript will automatically infer the type of that variable. Infer meaning, a variable declared as a string will always be a string no matter what. You can never assign any other type to it.
 ```typescript
 let player = 'Steph Curry'; // typescript will infer that player is a string

@@ -262,3 +262,68 @@ pointGuard = { name: 'steph', jerseyNumber: 30, active: true, injured: false }; 
 pointGuard = { name: 'steph', jerseyNumber: 30 }; // error: active property is missing
 ```
 With the example above you may notice that behaviour of your code can start to get weird without properly defining the type of your variables. A **name** property with a **number**. A **jerseyNumber** property with a **string**. So use **any** cautiously and consider it as your last option if possible.
+***
+
+# Better Workflow And Config
+Throughout this tutorial, we have been using **tsc** to compile our typescript file into javascript file and using **-w** to watch for changes in our sanbox.ts file and automatically build it.
+```terminal
+tsc sanbox.ts -w
+```
+In a real world application, we are going to have folders that contains our public files and source files.
+```
+project
+|--   public
+    |--   index.html
+    |--   styles.css
+    |--  sandbox.js
+|--   src
+    |--   sandbox.ts
+```
+Now we have sandbox.ts inside the src folder. However, if we try to build this file using the **tsc** command. The sandbox.js file will also be created inside the src folder. We don't want that. What we want is to build the typescript file inside the src folder and put the javascript file in public folder automatically.
+We can achieve that by using a **tsconfig.json** file. To create a new tsconfig.json file, we execute the command below in our root project folder.
+```bash
+tsc --init
+```
+Once you run this command, a new tsconfig.json will be automatically created for you. The tsconfig.json file will have some defaults configration, also included are some of the configuration options we can use.
+Now, what we are interested in right now is the **rootDir** configuration inside our tsconfig.json file. Right now it is pointing to **"./"**. What we want is to point it to our src folder.
+Also, we want out **outDir** to point to our public folder because that is where we want to store our compiled javascript file.
+```json
+{
+    ...
+    "rootDir": "./src",
+    "outDir": "./public",
+}
+```
+By changing the rootDir and outDir configuration, we can now compile our typescript file by just running the **tsc** command and nothing else. Remember, we can still include the **-w** option so that we are still automatically watching for changes in our typescript files.
+```bash
+tsc -w
+```
+By running the tsc command, it will look for our tsconfig.json file, once it sees the rootDir and outDir, it will know which typescript files it needs to compile and where to put the javascript files after.
+Now, if you try to create a new typescript file inside your src folder, typescript will automatically create the equivalent javascript file of that typescript file and put it in the public folder.
+There is only one problem with this setup and we have one missing configuration that we need to add. For example, if you try to create a new typescript file in the root folder, not in the src folder. You will notice that it compile that typescript file and generate a new javascript file in the root folder.
+```
+project
+|--   public
+    |--   index.html
+    |--   styles.css
+    |--  sandbox.js
+|--   src
+    |--   sandbox.ts
+|-- test.ts
+|-- test.js
+```
+In the above file structure, you will notice a **test.ts** and **test.js** file in our root directory. 
+But wait, didn't we configure our tsconfig.json file to look inside the src folder for typescript files and generate the javascript files in our public folder? Well, that is true, but what we basically told tsconfig is **'when we build a typescript file inside the scr folder, I want you to put the javascript files in the public folder'**. That's it.
+We did not tell tsconfig to ignore any other typescript files created outside the src folder. In order for us to do that, we can add another configuration inside our tsconfig.json file. This time it should be on the same level as **compilerOptions**. The configuration we need to add is **include**. This is the current config that we have. This will tell tsconfig to only include the typescript files inside the **include** property.
+```json
+{
+    "compilerOptions": {
+        ...
+        "rootDir": "./src",
+        "outDir": "./public",
+    },
+    "include": ["src"]
+}
+```
+With this, if you now try to create a new typescript file outside the src folder, it will not be compiled and there will be no javascript file generated for it.
+Remember, for more details on all of the configurations available for us in tsconfig.json file, visit the official documentation of [typescript](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).

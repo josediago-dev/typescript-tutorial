@@ -137,6 +137,7 @@ pointGuard = {
 };
 ```
 ***
+
 # Explicit Types
 Lessons about explicit types.
 In typescript, when you declare a variable and give it a value and type, typescript will automatically infer the type of that variable. Infer meaning, a variable declared as a string will always be a string no matter what. You can never assign any other type to it.
@@ -222,3 +223,39 @@ pointGuard = { name: 'steph curry', jerseyNumber: 30 }; // not allowed because a
 pointGuard = { name: 'steph curry', jerseyNumber: 30, active: true, injured: false }; // not allowed, injured is not a property of pointGuard when it is first created.
 ```
 This way we are sure that pointGuard will always be an object. However, when we assign new values to our pointGuard object, we can't remove or add new property.
+***
+
+# Dynamic Types
+We have been discussing about explicitly defining the type of our variables. But sometimes, we want to declare a variable and set its type to **any** type.
+We may want it to be string and then number for some reason or whatever use case you currently have. We can do this by using the **any** typescript syntax.
+```typescript
+let pointGuard: any; // type is any
+pointGuard = 'Steph Curry'; // allowed (string)
+console.log(pointGuard); // output: 'Steph Curry'
+pointGuard = 30; // allowed (number)
+console.log(pointGuard); // output: 30
+```
+Using **any** though discards the benefit of typescript. We will not get any errors by assigning a new type to the pointGuard object. We can change our pointGuard type whatever type we want, which makes this variable unpredictable.
+
+It is useful though when you are not sure what the type of the data you are getting which will then be stored to the variable you created. Maybe the data is coming from an outside source and you want to store it in a variable, but you are not sure what the type of data you will be getting from that outside source. Then using **any** is a safe way to do it.
+
+But most of the time, the best practice is to always have control on how your data will look like. This gives you and your code the confidence that it will always work the way you expect it to work.
+
+Using **any** in an array is also pretty straightforward.
+```typescript
+let warriors: any[] = []; // type is array of any type
+warriors.push('steph'); // allowed (string)
+warriors.push(30); // allowed (number)
+warriors.push({ active: true }); // allowed (object)
+console.log(warriors); // output: ['steph', 30, { active: true }]
+```
+
+Using **any** in an object is also pretty straightforward. But just like our object examples from our previous topics, we can't add or remove a property from our object.
+```typescript
+let pointGuard: { name: any, jerseyNumber: any, active: any }; // object properties are of any type
+pointGuard = { name: 30, jerseyNumber: 'steph', active: { isActive: true } }; // allowed (name is a number, jerseyNumber is a string)
+console.log(pointGuard); // output: { name: 30, jerseyNumber: 'steph', active: { isActive: true } }
+pointGuard = { name: 'steph', jerseyNumber: 30, active: true, injured: false }; // error: injured is not a property when pointGuard is originally created
+pointGuard = { name: 'steph', jerseyNumber: 30 }; // error: active property is missing
+```
+With the example above you may notice that behaviour of your code can start to get weird without properly defining the type of your variables. A **name** property with a **number**. A **jerseyNumber** property with a **string**. So use **any** cautiously and consider it as your last option if possible.

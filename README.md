@@ -9,6 +9,7 @@ This repository contains a typescript fundamental tutorial. This will also serve
 - [Basic Types](#basic-types)
 - [Objects And Arrays](#objects-and-arrays)
 - [Explicit Types](#explicit-types)
+- [Dynamic Types](#dynamic-types)
 
 # main
 The base repository. Every subsequent repositories are based from this branch.

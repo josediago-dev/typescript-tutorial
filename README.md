@@ -314,7 +314,7 @@ project
 |-- test.js
 ```
 In the above file structure, you will notice a **test.ts** and **test.js** file in our root directory. 
-But wait, didn't we configure our tsconfig.json file to look inside the src folder for typescript files and generate the javascript files in our public folder? Well, that is true, but what we basically told tsconfig is **'when we build a typescript file inside the scr folder, I want you to put the javascript files in the public folder'**. That's it.
+But wait, didn't we configure our tsconfig.json file to look inside the src folder for typescript files and generate the javascript files in our public folder? Well, that is true, but what we basically told tsconfig is **'when we build a typescript file inside the src folder, I want you to put the javascript files in the public folder'**. That's it.
 We did not tell tsconfig to ignore any other typescript files created outside the src folder. In order for us to do that, we can add another configuration inside our tsconfig.json file. This time it should be on the same level as **compilerOptions**. The configuration we need to add is **include**. This is the current config that we have. This will tell tsconfig to only include the typescript files inside the **include** property.
 ```json
 {

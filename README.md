@@ -13,6 +13,7 @@ This repository contains a typescript fundamental tutorial. This will also serve
 - [Explicit Types](#explicit-types)
 - [Dynamic Types](#dynamic-types)
 - [Better Workflow And Config](#better-workflow-and-config)
+- [Basic Functions](#basic-functions)
 
 # Main
 The base repository. Every subsequent repositories are based from this branch.
@@ -328,3 +329,88 @@ We did not tell tsconfig to ignore any other typescript files created outside th
 ```
 With this, if you now try to create a new typescript file outside the src folder, it will not be compiled and there will be no javascript file generated for it.
 Remember, for more details on all of the configurations available for us in tsconfig.json file, visit the official documentation of [typescript](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
+***
+
+# Basic Functions
+Just like in string, number, boolean, when you declare a function, typescript will automatically infer that the variable is a function. Therefore, setting its value to another type is not allowed.
+```typescript
+const shoot = () => {
+    console.log('Shoot the ball!');
+}; // inferred by typescript automatically as a function
+
+shoot = 'Steph Curry'; // not allowed (function to string)
+```
+Now, let us say that we want to explicitly create a variable that will hold a function. We can still do that just like in string, number, boolean etc.
+```typescript
+let shoot: Function; // explicitly saying that shoot is a function
+
+shoot = () => {
+    console.log('Shoot the ball!');
+}; // assigning a function to variable shoot
+
+shoot();
+```
+One thing to notice here is that **Function** is spelled with uppercase F. Unlike in string, number, boolean etc. Passing a parameter in a function is also pretty straightforward. We can declare the types of parameter our function will allow or expects.
+```typescript
+const shoot = (player: string, point: number) => {
+    console.log(`${player} shot the ball from a ${point} point distance!`);
+}; // declaring a function that accepts player as string and point as number
+
+shoot('Steph Curry', 3); // allowed (string, number)
+shoot(3, 'steph'); // not allowed (number, string)
+```
+We can also pass a union type parameter in a function.
+```typescript
+const shoot = (player: string, point: number, assist: string|number) => {
+    console.log(`${player} shot the ball from a ${point} distance! ${assist} with the assist!`);
+}; // declaring a function that accepts player as string, point as number and assist as union of string|number
+
+shoot('Steph Curry', 3, 'Draymond'); // 3rd parameter is a string
+shoot('Steph Curry', 3, 23); // 3rd parameter is a number
+shoot('Steph Curry', 3); // not allowed, 3rd parameter is missing
+shoot('Steph Curry', 3, true); // not allowed, 3rd parameter is a boolean
+```
+What if we want the **assist** parameter in the previous example to be **optional**? We can also do that by adding the **?** in the parameter.
+```typescript
+const shoot = (player: string, point: number, assist?: string|number) => {
+    console.log(`${player} shot the ball from a ${point} distance! ${assist ? assist + 'with the assist!' : ''}`);
+}; // declaring a function that accepts player as string, point as number and assist as union of string|number
+
+shoot('Steph Curry', 3, 'Draymond'); // 3rd parameter is a string
+shoot('Steph Curry', 3); // allowed since 3rd parameter is optional
+```
+We can also add a default parameter in a function. Just like in a typical javascript function. You will notice in the **shoot** function that the 3rd parameter **assist** have a default parameter set to **'Draymond'**. A good practice as well is to declare first all of your required parameters (player, point) before declaring your optional parameters (assist).
+```typescript
+const shoot = (player: string, point: number, assist: string|number = 'Draymond') => {
+    console.log(`${player} shot the ball from a ${point} distance! ${assist ? assist + 'with the assist!' : ''}`);
+}; // declaring a function that accepts player as string, point as number and assist as union of string|number
+
+shoot('Steph Curry', 3, 'Draymond'); // 3rd parameter is a string
+shoot('Klay Thompson', 3); // 3rd parameter is empty but 'Draymond' is the default parameter
+```
+When we have a function that returns a particular value and we store that value in a variable, typescript will automatically infer the type of that value to the variable. Therefore making that variable explicitly of type equal to the type of the returned value by the function.
+```typescript
+const displayCurrentPlay = (player: string, point: number) => {
+    return `${player} shot the ball from a ${point} point distance!`;
+}; // this function returns a string
+
+let currentPlay = displayCurrentPlay('Steph Curry', 3); // typescript will automatically infer that the currentPlay variable will always be a string
+console.log(currentPlay);
+
+currentPlay = 3; // not allowed since currentPlay should be a string
+```
+In some cases we also want to explicitly define the return type of our function. This is particularly helpful when a function is doing a lot of logic. Just by looking at the function declaration, we can already tell that this function is returning an explicit type. So when another developer reads the function, they will immediately have an idea on what type the function is going to return.
+```typescript
+const shoot = (player: string): string => { // explicitly saying we want to return a string
+    return `${player} took the shot!`;
+};
+const play = shoot('Steph Curry'); 
+console.log(play);
+```
+Another helpful case is for example, we have a function that is also doing a lot of logic but is not returning anything. Technically speaking, it is still returning something, that something is called **void**. So if you want to explicitly say that your function is returning void, you can also do that.
+```typescript
+const shoot = (player: string): void => {
+    console.log(`${player} took the shot!`);
+};
+shoot('Steph Curry');
+```

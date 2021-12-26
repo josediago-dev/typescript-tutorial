@@ -1,7 +1,9 @@
 # typescript-tutorial
 
 ## A tutorial repository for typescript.
-This repository contains a typescript fundamental tutorial. This will also serve as a reference for me whenever I feel like going back to the basics of typescript.
+This repository contains a typescript fundamental tutorial. This will also serve as a reference for me whenever I feel like going back to the basics of typescript. This is inspired by Net Ninja's Typescript Tutorial.
+
+[Net Ninja Youtube Channel](https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg)
 
 ### Branches
 - [Main](#main)

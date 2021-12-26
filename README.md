@@ -1,3 +1,3 @@
 # typescript-tutorial
 
-## Better Workflow And Config
+## Basic Functions

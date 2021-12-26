@@ -11,7 +11,7 @@ This repository contains a typescript fundamental tutorial. This will also serve
 - [Explicit Types](#explicit-types)
 - [Dynamic Types](#dynamic-types)
 
-# main
+# Main
 The base repository. Every subsequent repositories are based from this branch.
 ***
 

@@ -4,12 +4,11 @@
 This repository contains a typescript fundamental tutorial. This will also serve as a reference for me whenever I feel like going back to the basics of typescript.
 
 ### Branches
-
-[Main](#main)
-[Compiling Typescrit](#compiling-typescript)
-[Basic Types](#basic-types)
-[Objects And Arrays](#objects-and-arrays)
-[Explicit Types](#explicit-types)
+- [Main](#main)
+- [Compiling Typescrit](#compiling-typescript)
+- [Basic Types](#basic-types)
+- [Objects And Arrays](#objects-and-arrays)
+- [Explicit Types](#explicit-types)
 
 # main
 The base repository. Every subsequent repositories are based from this branch.

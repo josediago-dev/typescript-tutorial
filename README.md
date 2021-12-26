@@ -1,3 +1,3 @@
 # typescript-tutorial
 
-## Dynamic Types
+## Better Workflow And Config

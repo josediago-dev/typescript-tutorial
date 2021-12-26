@@ -26,7 +26,7 @@ npm install typescript -g
 ```
 By installing typescript into our system locally, we are now able to use the **tsc** command to compile a typescript file. So first, open a terminal where your current typescript file is located and run the tsc command.
 ```
-tsc sandbox.ts // sandbox.ts is our typescript file, this will compile sanbox.ts to sandbox.js
+tsc sandbox.ts // sandbox.ts is our typescript file, this will compile sandbox.ts to sandbox.js
 ```
 You will notice that everytime we make changes to our typescript file **(sandbox.ts)** we need to run **tsc** command again and again. To automatically watch for changes in our typescript file, we can use the **-w** command.
 ```
@@ -266,9 +266,9 @@ With the example above you may notice that behaviour of your code can start to g
 ***
 
 # Better Workflow And Config
-Throughout this tutorial, we have been using **tsc** to compile our typescript file into javascript file and using **-w** to watch for changes in our sanbox.ts file and automatically build it.
+Throughout this tutorial, we have been using **tsc** to compile our typescript file into javascript file and using **-w** to watch for changes in our sandbox.ts file and automatically build it.
 ```terminal
-tsc sanbox.ts -w
+tsc sandbox.ts -w
 ```
 In a real world application, we are going to have folders that contains our public files and source files.
 ```

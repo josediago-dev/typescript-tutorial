@@ -1,16 +1,4 @@
-"use strict";
-// classes
-class Invoice {
-    // by adding access modifiers, we can directly assign values to client, details and amount
-    constructor(client, details, amount) {
-        this.client = client;
-        this.details = details;
-        this.amount = amount;
-    }
-    format() {
-        return `${this.client} owes P${this.amount} for ${this.details}`;
-    }
-}
+import { Invoice } from './classes/Invoice.js';
 const invoice1 = new Invoice('Mario', 'Work on the Mario Website', 25000);
 const invoice2 = new Invoice('Luigi', 'Work on the Luigi Website', 30000);
 let invoices = [];

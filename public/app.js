@@ -1,6 +1,7 @@
 "use strict";
 // classes
 class Invoice {
+    // by adding access modifiers, we can directly assign values to client, details and amount
     constructor(client, details, amount) {
         this.client = client;
         this.details = details;
@@ -15,7 +16,10 @@ const invoice2 = new Invoice('Luigi', 'Work on the Luigi Website', 30000);
 let invoices = [];
 invoices.push(invoice1);
 invoices.push(invoice2);
-console.log(invoices);
+invoices.forEach((inv) => {
+    // we can't access inv.details here because it is private
+    console.log(inv.client, inv.amount, inv.format());
+});
 const form = document.querySelector('.new-item-form');
 const type = document.querySelector('#type');
 const tofrom = document.querySelector('#tofrom');
